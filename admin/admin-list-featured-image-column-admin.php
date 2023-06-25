@@ -6,12 +6,13 @@ if (!defined('WPINC')) {
 
 // Make sure featured images are enabled
 add_action('after_setup_theme', 'alfic_enable_thumbnails');
-function alfic_enable_thumbnails() {
+function alfic_enable_thumbnails()
+{
     // Check if theme supports post-thumbnails already
     if (current_theme_supports('post-thumbnails')) {
         return;
     }
-	add_theme_support('post-thumbnails');
+    add_theme_support('post-thumbnails');
 }
 
 // Add settings page to the admin menu
@@ -34,7 +35,6 @@ function alfic_register_settings()
     register_setting('admin_list_featured_image_column', 'alfic_post_types', array('sanitize_callback' => 'alfic_sanitize_post_types'));
     register_setting('admin_list_featured_image_column', 'alfic_column_label', array('sanitize_callback' => 'sanitize_text_field'));
     register_setting('admin_list_featured_image_column', 'alfic_max_width', array('sanitize_callback' => 'alfic_sanitize_max_width'));
-
 }
 
 // Sanitize post types
@@ -59,7 +59,7 @@ function alfic_settings_page()
     if (!current_user_can('manage_options')) {
         return;
     }
-    ?>
+?>
     <div class="wrap">
         <h1><?php esc_html_e('Admin List Featured Image Column Settings', 'admin_list_featured_image_column'); ?></h1>
         <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
@@ -127,7 +127,7 @@ function alfic_settings_page()
             <?php submit_button(); ?>
         </form>
     </div>
-    <?php
+<?php
 }
 
 // Save settings
